@@ -1,4 +1,0 @@
-/**dkjsqhdkqshkjdhqskjhdkjsq*/
-public class Testtetet {
-
-}
