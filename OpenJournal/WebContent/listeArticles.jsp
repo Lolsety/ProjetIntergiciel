@@ -10,7 +10,7 @@
 Liste des articles...et pour chaque article, on aura le lien suivant : 
 <a href="Servlet?op=lireArticles&titre=nomArticle">Lire l'article</br></a>
 
-<a href="index.html">Déconnection </br></a>
-<a href="Servlet?op=RetourIndex"> Retour à l'accueil </br></a>
+<a href="index.html">Déconnexion </br></a>
+<a href="ServletComptes?op=RetourIndex"> Retour à l'accueil </br></a>
 </body>
 </html>

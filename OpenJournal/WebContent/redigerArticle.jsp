@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form method="get" action="Servlet">
+<form method="get" action="ServletArticles">
 	<input type="text" name="Titre" value="Titre de l'article"> </br>
 	<textarea name="CorpsArticle">
 	</textarea> </br>
@@ -15,8 +15,8 @@
 	<input type="hidden" name="op" value="soumissionArticle">
 </form>
 
-<a href="index.html">Déconnection </br></a>
-<a href="Servlet?op=RetourIndex"> Retour à l'accueil </br></a>
+<a href="index.html">Déconnexion </br></a>
+<a href="ServletComptes?op=RetourIndex"> Retour à l'accueil </br></a>
 	
 </body>
 </html>

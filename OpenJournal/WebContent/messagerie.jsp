@@ -9,11 +9,12 @@
 <body>
 
 Liste des messages...et pour chaque message, on aura le lien suivant : 
-<a href="Servlet?op=lireMessages&id=numMessage">Lire le message</br></a>
+<a href="ServletMessagerie?op=lireMessages&id=numMessage">Lire le message</br></a>
 
-<a href="Servlet?op=EcrireMessage">Ecriture d'un nouveau message </br></a>
-<a href="index.html">Déconnection </br></a>
-<a href="Servlet?op=RetourIndex"> Retour à l'accueil </br></a>
+<a href="ServletMessagerie?op=EcrireMessage">Ecriture d'un nouveau message </br></a>
+
+<a href="index.html">Déconnexion </br></a>
+<a href="ServletComptes?op=RetourIndex"> Retour à l'accueil </br></a>
 
 </body>
 </html>
