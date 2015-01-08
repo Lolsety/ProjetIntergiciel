@@ -13,13 +13,7 @@
 	switch (droit) {
 	case ADMNINISTRATEUR:
 	%>
-		<a href="ServletArticles?op=PublierArticle">Publier un article</br></a>
 		<a href="ServletDroits?op=GererDroits">Gérer les droits</br></a>
-	<%
-	break;
-	case CORRECTEUR :
-	%>
-		<a href="ServletArticles?op=corrigerArticle">Corriger un article</br></a>
 	<%
 	break;
 	}
