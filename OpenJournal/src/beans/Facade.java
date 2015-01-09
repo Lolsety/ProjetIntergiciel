@@ -23,9 +23,17 @@ public class Facade {
 		em.persist(c);
 	}
 	
+	public void setNomUtilisateur(String nom, Compte compte) {
+		compte.setNom(nom);
+	}
+	
+	public void setPrenomUtilisateur(String prenom, Compte compte) {
+		compte.setPrenom(prenom);
+	}
+	
 	public void setDroitUtilisateur(Droit droit, Compte compte) {
 		compte.setDroit(droit);
-		}
+	}
 	
 	public Compte getCompteUtilisateur(String user) {
 		return em.find(Compte.class, user);

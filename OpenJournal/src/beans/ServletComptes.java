@@ -46,24 +46,24 @@ public class ServletComptes extends HttpServlet {
 		// TODO Auto-generated method stub
 		String op=request.getParameter("op");
 		String user="olienhar";
-		Compte compteUtilisateur=facade.getCompteUtilisateur(user);
+		Compte olivier=facade.getCompteUtilisateur(user);
 
-		if (compteUtilisateur==null) {
+		if (olivier==null) {
 			facade.ajouterCompte(user);
-			compteUtilisateur=facade.getCompteUtilisateur(user);
+			olivier=facade.getCompteUtilisateur(user);
 		}
 		
 		if(op.equals("connexion")) {
-			// on verifie que le  compte existe bien
+			// on verifiera que le  compte existe bien
 			boolean connexionReussie=true;
 			if (connexionReussie) {
-				request.setAttribute("droit", compteUtilisateur.getDroit());
+				request.setAttribute("droit", olivier.getDroit());
 				request.getRequestDispatcher("index.jsp").forward(request,response);
 			} else {
 				request.getRequestDispatcher("connexionEchouee.html").forward(request,response);
 			}
 		} else if (op.equals("inscription")){
-			// on verifie que le compte ldap existe bien, et on ajoute les informations d'utilisateurs dans notre
+			// on verifiera que le compte ldap existe bien, et on ajoutera les informations d'utilisateurs dans notre
 			// BD
 			boolean inscriptionReussie=true;
 			if (inscriptionReussie) {
@@ -73,8 +73,9 @@ public class ServletComptes extends HttpServlet {
 				request.getRequestDispatcher("inscriptionEchouee.html").forward(request,response);
 			}
 		}  else if (op.equals("RetourIndex")) {
-			facade.setDroitUtilisateur(Droit.ADMNINISTRATEUR, compteUtilisateur);
-			request.setAttribute("droit", compteUtilisateur.getDroit());
+			//c'est juste un test
+			facade.setDroitUtilisateur(Droit.ADMNINISTRATEUR, olivier);
+			request.setAttribute("droit", olivier.getDroit());
 			request.getRequestDispatcher("index.jsp").forward(request,response);
 		}
 	}

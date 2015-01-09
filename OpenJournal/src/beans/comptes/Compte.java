@@ -32,6 +32,7 @@ public class Compte {
 	
 	public Compte() {
 		this.droit=Droit.UTILISATEUR;
+		this.nom="test";
 	}
 	
 	public String getPseudoLdap() {
