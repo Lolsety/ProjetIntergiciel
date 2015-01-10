@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+ <display-name>SampleWebApp</display-name>
+ <session-config>
+  <session-timeout>30</session-timeout>
+ </session-config>
+ <error-page>
+  <error-code>403</error-code>
+  <location>/AccessDenied403.jsp</location>
+ </error-page>
+ <security-constraint>
+  <display-name>SecurityConstraint</display-name>
+  <web-resource-collection>
+   <web-resource-name>Secured resources</web-resource-name>
+   <url-pattern>/WEB-INF/restricted/*</url-pattern>
+   <http-method>GET</http-method>
+   <http-method>POST</http-method>
+  </web-resource-collection>
+  <auth-constraint>
+   <role-name>user</role-name>
+   <role-name>admin</role-name>
+  </auth-constraint>
+  <user-data-constraint>
+   <transport-guarantee>NONE</transport-guarantee>
+  </user-data-constraint>
+ </security-constraint>
+ <security-constraint>
+  <display-name>Administrateur</display-name>
+  <web-resource-collection>
+   <web-resource-name>page admin</web-resource-name>
+   <url-pattern>/WEB-INF/restricted/gererDroits.jsp</url-pattern>
+   <url-pattern>/LoginServlet</url-pattern>
+   <http-method>GET</http-method>
+   <http-method>POST</http-method>
+  </web-resource-collection>
+  <auth-constraint>
+   <role-name>admin</role-name>
+  </auth-constraint>
+  <user-data-constraint>
+   <transport-guarantee>NONE</transport-guarantee>
+  </user-data-constraint>
+ </security-constraint>
+ <login-config>
+  <auth-method>FORM</auth-method>
+  <form-login-config>
+   <form-login-page>/WEB-INF/connexion.html</form-login-page>
+   <form-error-page>/WEB-INF/connexionEchouee.html</form-error-page>
+  </form-login-config>
+ </login-config>
+ <!--
+ <filter id="Filter_1">
+    <filter-name>LoginFilter</filter-name>
+	   <filter-class>com.login.LoginFilter</filter-class>
+</filter>
+
+<filter-mapping>
+	<filter-name>LoginFilter</filter-name>
+	    <url-pattern>/j_security_check</url-pattern>
+</filter-mapping>
+-->
+ <security-role>
+  <role-name>admin</role-name>
+ </security-role>
+ <security-role>
+  <role-name>user</role-name>
+ </security-role>
+</web-app>
