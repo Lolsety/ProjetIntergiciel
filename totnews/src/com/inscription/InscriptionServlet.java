@@ -43,18 +43,26 @@ public class InscriptionServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String pseudoLDAP = request.getParameter("PseudoLDAP");
-		String eMail = request.getParameter("eMail");
-		String pseudoSite = request.getParameter("pseudoSite");
+		String pseudoSite = request.getParameter("PseudoSite");
+		String email = request.getParameter("eMail");
+		if (email==null) {
+			email = "non renseigné";
+		}
 		String nom = request.getParameter("nom");
+		if (nom==null) {
+			nom = "non renseigné";
+		}
 		String prenom = request.getParameter("prenom");
+		if (prenom==null) {
+			prenom = "non renseigné";
+		}
 		String age = request.getParameter("age");
 		Droit droit = Droit.UTILISATEUR;
 		try {
-			facade.ajouterCompte(pseudoLDAP,eMail,pseudoSite,nom,prenom,age,droit);
+			facade.ajouterCompte(pseudoLDAP,pseudoSite,email,nom,prenom,age,droit);
 		} catch (CompteDejaCree e) {
 			// TODO
 		}
-		request.setAttribute("firstConnection",1);
 		request.getRequestDispatcher("/LoginServlet").forward(request,response);
 	}
 

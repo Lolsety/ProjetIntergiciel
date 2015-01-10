@@ -53,33 +53,16 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    	int firstConec;
-    	Compte compte = facade.getCompteUtilisateur(request.getUserPrincipal().getName());
     	try {
-    		firstConec = (int)request.getAttribute("firstConnection");
+	    	Compte compte = facade.getCompteUtilisateur(request.getUserPrincipal().getName());
+	    	if (request.isUserInRole("admin")) {
+	    		compte.setDroit(Droit.ADMNINISTRATEUR);
+	    	}
+    	    request.setAttribute("droit", compte.getDroit());
+    	    request.getRequestDispatcher("/WEB-INF/restricted/index.jsp").forward(request, response);
     	} catch (Exception e) {
-    		firstConec = 0;
+    		request.getSession().invalidate();
+    		request.getRequestDispatcher("/index.html").forward(request, response);
     	}
-    	if (firstConec==1) {
-    		if (request.isUserInRole("admin")) {
-    			compte.setDroit(Droit.ADMNINISTRATEUR);
-    		}
-    	}
-    	try {
-    	     request.setAttribute("droit", compte.getDroit());
-    	     request.getRequestDispatcher("/WEB-INF/restricted/index.jsp").forward(request, response);
-    	} catch (NullPointerException e) {
-    		request.getRequestDispatcher("/WEB-INF/restricted/index.jsp").forward(request, response);
-    	}
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
     }
 }

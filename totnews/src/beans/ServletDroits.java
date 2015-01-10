@@ -50,7 +50,7 @@ public class ServletDroits extends HttpServlet {
 		
 		if(op.equals("GererDroits")) {
 			request.setAttribute("listeComptes", listeComptes);
-			request.getRequestDispatcher("gererDroits.jsp").forward(request,response);
+			request.getRequestDispatcher("/WEB-INF/restricted/gererDroits.jsp").forward(request,response);
 		}
 	}		
 

@@ -5,18 +5,17 @@
 <title>Inscription</title>
 </head>
 <body>
-<form method="get" action="InscriptionServlet">
-		Pseudonyme affilié au compte ldap : <input name="PseudoLDAP"  type="text"/> </br>
-		Mot de passe : Pas nécessaire, même que le compte ldap </br> 
-		Pseudonyme pour ce site internet : <input name="PseudoSite"  type="text"/> </br>
-		Votre eMail : <input name="eMail" type="text"/></br>
-		votre nom : <input name="nom" type="text"/></br>
-		votre prenom : <input name="prenom" type="text"/></br>
-		votre age : <input name="age" type="text"/></br>
-		<input type="submit" value="S'inscrire">
-		<input type="hidden" name="op" value="inscription">
-</form>
+	<form method="post" action="InscriptionServlet">
+		Pseudonyme affilié au compte ldap : <input name="PseudoLDAP" type="text"  /> <br> 
+		Mot de passe : Pas nécessaire, même que le compte ldap <br> 
+		Pseudonyme pour ce site internet : <input name="PseudoSite"	type="text" required="required"/> <br> 
+		Votre eMail : <input name="eMail" type="text"  /><br>
+		votre nom : <input name="nom" type="text"  /><br> 
+		votre prenom : <input name="prenom" type="text"  /><br> 
+		votre age : <input name="age" type="text" required="required" /><br> 
+		<input type="submit"  >
+	</form>
 
-<a href="index.html">Retour à l'acceuil</br></a>
+	<a href="index.html">Retour à l'acceuil<br></a>
 </body>
 </html>
