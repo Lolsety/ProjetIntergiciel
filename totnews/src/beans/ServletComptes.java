@@ -43,22 +43,19 @@ public class ServletComptes extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		try {
-			String op=request.getParameter("op");
-			Compte compte=facade.getCompteUtilisateur(request.getUserPrincipal().getName());
+		
+		String op=request.getParameter("op");
+		Compte compte=facade.getCompteUtilisateur(request.getUserPrincipal().getName());
+		
+		if (op.equals("RetourIndex")) {
+			//c'est juste un test
+			facade.setDroitUtilisateur(Droit.ADMNINISTRATEUR, compte);
+			request.setAttribute("droit", compte.getDroit());
+			request.getRequestDispatcher("/WEB-INF/restricted/index.jsp").forward(request,response);
+		} else if (op.equals("Deconnexion")) {
 			
-			if (op.equals("RetourIndex")) {
-				//c'est juste un test
-				facade.setDroitUtilisateur(Droit.ADMNINISTRATEUR, compte);
-				request.setAttribute("droit", compte.getDroit());
-				request.getRequestDispatcher("/WEB-INF/restricted/index.jsp").forward(request,response);
-			} else if (op.equals("Deconnexion")) {
-				
-				request.getRequestDispatcher("ServletComptes");
-				request.getSession().invalidate();
-			}
-		} catch (NullPointerException e) {
-			request.getRequestDispatcher("/index.html");
+			request.getSession().invalidate();
+			response.sendRedirect("/journal/index.html");
 		}
 				
 	}

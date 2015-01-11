@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1>
-		Login Failed. <a href="login.html">Please try again.</a>
+		Login Failed. <a href="/journal/index.html">Please try again.</a>
 	</h1>
 </body>
 </html>

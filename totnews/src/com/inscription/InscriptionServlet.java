@@ -63,7 +63,7 @@ public class InscriptionServlet extends HttpServlet {
 		} catch (CompteDejaCree e) {
 			// TODO
 		}
-		request.getRequestDispatcher("/LoginServlet").forward(request,response);
+		response.sendRedirect("/journal/index.html");
 	}
 
 }

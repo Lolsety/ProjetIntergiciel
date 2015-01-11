@@ -7,9 +7,10 @@
 <title>JSP Page</title>
 </head>
 <body>
-	<h1>You do not have access to this page.</h1>
+	<h1>You do not have access to this page. Your role: </h1>
+	<%= request.isUserInRole("user") %>
 	<h1>
-		Login Failed. <a href="login.html">Please try again.</a>
+		Login Failed. <a href="/journal/index.html">Please try again.</a>
 	</h1>
 </body>
 </html>
