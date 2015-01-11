@@ -54,11 +54,10 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     	try {
-	    	Compte compte = facade.getCompteUtilisateur(request.getUserPrincipal().getName());
 	    	if (request.isUserInRole("admin")) {
-	    		compte.setDroit(Droit.ADMNINISTRATEUR);
+	    		facade.modifierDroit(request.getUserPrincipal().getName(), Droit.ADMNINISTRATEUR);
 	    	}
-    	    request.setAttribute("droit", compte.getDroit());
+    	    request.setAttribute("droit", facade.getCompteUtilisateur(request.getUserPrincipal().getName()).getDroit());
     	    request.getRequestDispatcher("/WEB-INF/restricted/index.jsp").forward(request, response);
     	} catch (Exception e) {
     		request.getSession().invalidate();

@@ -46,16 +46,20 @@ public class ServletComptes extends HttpServlet {
 		
 		String op=request.getParameter("op");
 		Compte compte=facade.getCompteUtilisateur(request.getUserPrincipal().getName());
-		
-		if (op.equals("RetourIndex")) {
-			//c'est juste un test
-			facade.setDroitUtilisateur(Droit.ADMNINISTRATEUR, compte);
-			request.setAttribute("droit", compte.getDroit());
-			request.getRequestDispatcher("/WEB-INF/restricted/index.jsp").forward(request,response);
-		} else if (op.equals("Deconnexion")) {
-			
-			request.getSession().invalidate();
+		if (compte==null) {
+			// Probablement un timeout => retour à la page d'index
 			response.sendRedirect("/journal/index.html");
+		} else {
+			if (op.equals("RetourIndex")) {
+				//c'est juste un test
+				facade.setDroitUtilisateur(Droit.ADMNINISTRATEUR, compte);
+				request.setAttribute("droit", compte.getDroit());
+				request.getRequestDispatcher("/WEB-INF/restricted/index.jsp").forward(request,response);
+			} else if (op.equals("Deconnexion")) {
+				
+				request.getSession().invalidate();
+				response.sendRedirect("/journal/index.html");
+			}
 		}
 				
 	}

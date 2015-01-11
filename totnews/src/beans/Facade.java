@@ -51,4 +51,8 @@ public class Facade {
 	public Collection<Compte> getComptes() {
 		return em.createQuery("from Compte", Compte.class).getResultList();
 	}
+	
+	public void modifierDroit(String pseudoLDAP, Droit droit) {
+		getCompteUtilisateur(pseudoLDAP).setDroit(droit);
+	}
 }
