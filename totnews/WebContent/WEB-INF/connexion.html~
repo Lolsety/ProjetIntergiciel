@@ -2,8 +2,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link href="../STYLE/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-<link href="../STYLE/style.css" rel="stylesheet">
+<link href="bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+<link href="style.css" rel="stylesheet">
 <title>Login</title>
 </head>
 

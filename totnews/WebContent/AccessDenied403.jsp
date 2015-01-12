@@ -4,13 +4,35 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>JSP Page</title>
+<link href="STYLE/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+<link href="STYLE/style.css" rel="stylesheet">
+<title>Inscription</title>
 </head>
+
 <body>
-	<h1>You do not have access to this page. Your role: </h1>
-	<%= request.isUserInRole("user") %>
-	<h1>
-		Login Failed. <a href="/journal/index.html">Please try again.</a>
-	</h1>
+
+	 <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand">
+			T.O.T News
+		  </a>
+        </div>
+      </div>
+    </nav>
+
+	<div class="container">
+		</br></br>
+		<center>
+		<h1>You do not have access to this page. Your role: </h1>
+		<%= request.isUserInRole("user") %>
+		<h1>
+			Login Failed. <a href="/journal/index.html">Please try again.</a>
+		</h1>
+		</center>
+    </div> 
+	
 </body>
+
 </html>
+

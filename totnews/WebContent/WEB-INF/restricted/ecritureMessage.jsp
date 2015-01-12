@@ -1,26 +1,68 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page import="beans.droits.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Ecriture d'un nouveau message</title>
+<link href="../../STYLE/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+<link href="../../STYLE/style.css" rel="stylesheet">
+<title>Ecriture d'un nouveau message </title>
 </head>
-<body>
 
+   <!-- Barre de titre -->
+   <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand">
+			T.O.T News
+		  </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="LoginServlet">Déconnexion</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-	<form method="get" action="ServletArticles">
-		<input type="text" name="Destinaire" value="Destinaire"> </br> <input
-			type="text" name="Objet" value="Objet du  message"> </br>
-		<textarea name="CorpsArticle">
-	</textarea>
-		</br> <input type="submit" value="Envoyer le message"> <input
-			type="hidden" name="op" value="envoiMessage">
-	</form>
+	<div class="container">
+	
+	<%Droit droit=(Droit) request.getAttribute("droit"); %>
+	
+	  <!-- Menu -->
+      <div class="row">
+        <nav class="col-sm-2">   
+          <ul class="nav nav-pills nav-stacked">
+            <li class="menu"> Menu :  </li>
+				<li> <a href="ServletComptes?op=RetourIndex"> Retour à l'accueil </a> </li>
+				<li> <a href="ServletComptes?op=Deconnexion">Déconnexion </a> </li>			
+          </ul> 
+        </nav>
+		
+		<!-- Article -->
+        <section class="col-lg-10">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<center class="ecriture_message">
+						<form method="get" action="ServletArticles">
+						<input name="Destinataire" type="text"  class="form-control" placeholder="Destinataire"  /><br>
+						<input name="Objet" type="text"  class="form-control" placeholder="Objet"  /><br>
+						<textarea class = "text_message" name="CorpsArticle"> </textarea>
+						</br></br>
+						<button class="btn  btn-primary" type="submit">Envoyer le message</button>
+						<input type="hidden" name="op" value="envoiMessage">
+						</form>
+					</center>
+				</div>
+			</div>
+        </section>
 
-	<a href="ServletComptes?op=Deconnexion">Déconnexion </br></a>
-	<a href="ServletComptes?op=RetourIndex"> Retour à l'accueil </br></a>
-
-
-</body>
+      </div>
+	  </div>
+    </div>
+	</body>
 </html>
+	

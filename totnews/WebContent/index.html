@@ -1,12 +1,55 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Index</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="STYLE/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+<link href="STYLE/style.css" rel="stylesheet">
+<title>T.O.T; News </title>
 </head>
-<body>
-	<a href="LoginServlet">connexion2.1</br></a>
-	<a href="inscription.html">Inscription</br></a>
-	<a href="ServletArticles?op=listerArticles">Lister les articles</br></a>
-</body>
+
+   <!-- Barre de titre -->
+   <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand">
+			T.O.T News
+		  </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="LoginServlet">Connexion</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+	<div class="container">
+	
+	  <!-- Menu -->
+      <div class="row">
+        <nav class="col-sm-2">   
+          <ul class="nav nav-pills nav-stacked">
+            <li class="menu"> Menu :  </li>
+            <li> <a href="LoginServlet"> Connexion </a> </li>
+            <li> <a href="inscription.html"> Inscription </a> </li>
+            <li> <a href="ServletArticles?op=listerArticles"> Liste des articles </a> </li>
+          </ul> 
+        </nav>
+		
+		<!-- Article -->
+        <section class="col-lg-10">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<center>
+					<h1> T.O.T News</h1>
+					<h1> Tôt ou tard l'info vous rattrape !</h1>
+					</center>
+				</div>
+			</div>
+        </section>
+
+      </div>
+	  </div>
+    </div>
+	</body>
 </html>

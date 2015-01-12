@@ -5,31 +5,69 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Index</title>
+<link href="../../STYLE/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+<link href="../../STYLE/style.css" rel="stylesheet">
+<title>T.O.T; News </title>
 </head>
-<body>
-<%Droit droit=(Droit) request.getAttribute("droit"); %>
-	<h1>You have been successfully logged in as </h1>
-    <%= request.getUserPrincipal().getName() %> 
-    <h1> And you are an </h1>	
-    <%= droit %><br>
-    <% 
-    	switch (droit) {
-			case ADMNINISTRATEUR:
-				%>
-					<a href="ServletDroits?op=GererDroits">Gérer les droits<br></a>
-				<%
-			break;
-			default: break;
-		}
-%>
 
-	<a href=ServletComptes?op=Deconnexion>Déconnexion <br></a>
-	<a href="ServletComptes?op=RetourIndex"> Retour à l'accueil <br></a>
-	<a href="ServletArticles?op=RedigerArticle">Rédiger un article<br></a>
-	<a href="ServletArticles?op=listerArticles">Lister les articles<br></a>
-	<a href="ServletMessagerie?op=accederMessagerie">Accéder à la
-		messagerie<br>
-	</a>
-</body>
+   <!-- Barre de titre -->
+   <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand">
+			T.O.T News
+		  </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="LoginServlet">Déconnexion</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+	<div class="container">
+	
+	<%Droit droit=(Droit) request.getAttribute("droit"); %>
+	
+	  <!-- Menu -->
+      <div class="row">
+        <nav class="col-sm-2">   
+          <ul class="nav nav-pills nav-stacked">
+            <li class="menu"> Menu :  </li>
+            	<%switch (droit) {
+				  case ADMNINISTRATEUR:
+				%>
+					<li><a href="ServletDroits?op=GererDroits">Gérer les droits</a></li>
+						<%
+						break;
+					default: break;
+					}
+					%>				
+					<li> <a href="ServletComptes?op=Deconnexion">Déconnexion</a>  </li>
+					<li> <a href="ServletComptes?op=RetourIndex"> Retour à l'accueil</a>  </li>
+					<li> <a href="ServletArticles?op=RedigerArticle">Rédiger un article</a>  </li>
+					<li> <a href="ServletArticles?op=listerArticles">Lister les articles</a>  </li>
+					<li> <a href="ServletMessagerie?op=accederMessagerie">Messagerie</a>  </li>
+          </ul> 
+        </nav>
+		
+		<!-- Article -->
+        <section class="col-lg-10">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<center>
+					<h1>You have been successfully logged in as </h1>
+    				<h1><%= request.getUserPrincipal().getName() %> </h1>
+    				<h1> And you are an <%= droit %> </h1>	
+    				<br>
+					</center>
+				</div>
+			</div>
+        </section>
+
+      </div>
+	  </div>
+    </div>
+	</body>
 </html>

@@ -5,29 +5,69 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>La liste des articles</title>
+<link href="../STYLE/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+<link href="../STYLE/style.css" rel="stylesheet">
+<title>Liste des articles </title>
 </head>
-<body>
-	Liste des articles...et pour chaque article, on aura le lien suivant :
-	<a href="Servlet?op=lireArticles&titre=nomArticle">Lire l'article</br></a>
-	<% Droit droit=(Droit) request.getAttribute("droit");
-	switch (droit) {
-	case ADMNINISTRATEUR:
-	%>
-	<a href="ServletArticles?op=CorrigerArticle">Corriger l'article</br></a>
-	<a href="ServletArticles?op=PublierArticle">Publier l'article</br></a>
-	<%
-	break;
-	case CORRECTEUR :
-	%>
-	<a href="ServletArticles?op=CorrigerArticle">Corriger l'article</br></a>
-	<%
-	break;
-	}
-%>
 
+   <!-- Barre de titre -->
+   <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand">
+			T.O.T News
+		  </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="index.html">Déconnexion</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-	<a href="index.html">Déconnexion </br></a>
-	<a href="ServletComptes?op=RetourIndex"> Retour à l'accueil </br></a>
+	<div class="container">
+	
+	  <!-- Menu -->
+      <div class="row">
+        <nav class="col-sm-2">   
+          <ul class="nav nav-pills nav-stacked">
+            <li class="menu"> Menu :  </li>
+            <li> <a href="ServletComptes?op=RetourIndex"> <span class="glyphicon glyphicon-home"></span> Acceuil </a> </li>
+            <li> <a href="ServletComptes?op=Deconnexion"> <span class="glyphicon glyphicon-remove"></span> Déconnexion </a> </li>
+          </ul> 
+        </nav>
+		
+		<section class="col-sm-10">
+		<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Articles de T.O.T. News</h3>
+				</div>
+				<div class="panel-body">
+					<div class="container">
+						Un article de fou <dd>     
+						<a href="#"> <span class="glyphicon glyphicon-book"></span> Lire </a>
+						<a href="#"> <span class="glyphicon glyphicon-pencil"></span> Corriger </a>
+						<a href="#"> <span class="glyphicon glyphicon-globe"></span> Publier</a>
+						</br>
+						Un autre article <dd>     
+						<a href="#"> <span class="glyphicon glyphicon-book"></span> Lire </a>
+						<a href="#"> <span class="glyphicon glyphicon-pencil"></span> Corriger </a>
+						<a href="#"> <span class="glyphicon glyphicon-globe"></span> Publier</a>
+						</br>
+						Et un troisième <dd>     
+						<a href="#"> <span class="glyphicon glyphicon-book"></span> Lire </a>
+						<a href="#"> <span class="glyphicon glyphicon-pencil"></span> Corriger </a>
+						<a href="#"> <span class="glyphicon glyphicon-globe"></span> Publier</a>
+						</br>
+						On est envahi !!! <dd>     
+						<a href="#"> <span class="glyphicon glyphicon-book"></span> Lire </a>
+						<a href="#"> <span class="glyphicon glyphicon-pencil"></span> Corriger </a>
+						<a href="#"> <span class="glyphicon glyphicon-globe"></span> Publier</a>
+					</div> 
+				</div>
+			</div>
+
+	</section>
 </body>
 </html>

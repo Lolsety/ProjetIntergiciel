@@ -1,0 +1,41 @@
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.inscription-form{
+  max-width: 400px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+body {
+  padding-top: 70px;
+  background-color:#96a8c8;
+  color:#000;      
+}
+
+/*couleurs du menu de droite*/
+nav {
+  background-color:#bcd;
+  border-radius: 6px;
+  border: 1px solid #222222;
+}
+
+.ecriture_message{
+	max-width: 500px;
+}
+
+/*couleurs du texte de l'article*/
+.panel {
+  background-color: #bcd;
+  border-radius: 6px;
+  border: 1px solid #222222;
+}
+
+/* Style du titre de l'article */
+.panel-default > .panel-heading, .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+  color: #cccccc;
+  background-color: #222222;
+}

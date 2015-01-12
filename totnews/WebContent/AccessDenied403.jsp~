@@ -1,0 +1,72 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="STYLE/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+<link href="STYLE/style.css" rel="stylesheet">
+<title>Inscription</title>
+</head>
+
+<body>
+
+	 <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand">
+			T.O.T News
+		  </a>
+        </div>
+      </div>
+    </nav>
+
+	<div class="container">
+      <form class="inscription-form" method="post" action="InscriptionServlet">
+        <h2 class="form-signin-heading">Inscription :</h2>
+        <input name="PseudoLDAP" type="text" class="form-control" placeholder="Pseudonyme affili&eacute au compte ldap" /> <br> 
+        <input name="PseudoSite" type="text" class="form-control" placeholder="Pseudonyme pour ce site internet" required="required"/> <br> 
+			<input name="eMail" type="text"  class="form-control" placeholder="Votre eMail"  /><br>
+			<input name="nom" type="text"  class="form-control" placeholder="Votre nom"  /><br> 
+			<input name="prenom" type="text"  class="form-control" placeholder="Votre pr&eacute;nom"  /><br> 
+			<input name="age" type="text" class="form-control" placeholder="Votre &acirc;ge" required="required" /><br> 
+		Mot de passe : celui du compte LDAP. <br> 
+		</br>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Inscription</button>
+		</br></br>
+		<a href="index.html">Retour &agrave l'acceuil<br></a>
+      </form>
+    </div> 
+	
+</body>
+
+</html>
+
+<!-- <head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="STYLE/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+<link href="style.css" rel="stylesheet">
+<title>ACCES DENIED</title>
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand">
+			T.O.T News
+		  </a>
+        </div>
+      </div>
+    </nav>
+
+	<div class="container">
+		<h1>You do not have access to this page. Your role: </h1>
+		<%= request.isUserInRole("user") %>
+		<h1>
+			Login Failed. <a href="/journal/index.html">Please try again.</a>
+		</h1>
+	</div>
+
+</body>
+</html> -->
