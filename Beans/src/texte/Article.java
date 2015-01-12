@@ -45,9 +45,13 @@ public class Article extends Texte {
 		return article;
 	}
 	
-	public void setContenu(String text) {		
+	public void setContenu(String text) {	
+		final File fichier =new File(this.text);
 		try {
-			final FileWriter writer = new FileWriter(this.text);
+			// Creation du fichier
+		       	fichier.createNewFile();
+	
+			final FileWriter writer = new FileWriter(fichier);
 			try {
 				writer.write(text);
 			} finally {
