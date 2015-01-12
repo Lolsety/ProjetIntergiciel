@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="../../STYLE/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-<link href="../../STYLE/style.css" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/STYLE/bootstrap/dist/css/bootstrap.css }">
+<link href="${pageContext.request.contextPath}/STYLE/style.css" rel="stylesheet">
 <title>T.O.T; News </title>
 </head>
 
@@ -20,7 +20,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="LoginServlet">Déconnexion</a></li>
+            <li><a href="ServletComptes?op=Deconnexion">Déconnexion</a></li>
           </ul>
         </div>
       </div>
@@ -46,7 +46,7 @@
 					%>				
 					<li> <a href="ServletComptes?op=Deconnexion">Déconnexion</a>  </li>
 					<li> <a href="ServletComptes?op=RetourIndex"> Retour à l'accueil</a>  </li>
-					<li> <a href="ServletArticles?op=RedigerArticle">Rédiger un article</a>  </li>
+					<li> <a href="ServletArticles?op=redigerArticle">Rédiger un article</a>  </li>
 					<li> <a href="ServletArticles?op=listerArticles">Lister les articles</a>  </li>
 					<li> <a href="ServletMessagerie?op=accederMessagerie">Messagerie</a>  </li>
           </ul> 

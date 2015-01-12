@@ -45,15 +45,15 @@ public class InscriptionServlet extends HttpServlet {
 		String pseudoLDAP = request.getParameter("PseudoLDAP");
 		String pseudoSite = request.getParameter("PseudoSite");
 		String email = request.getParameter("eMail");
-		if (email==null) {
+		if (email.isEmpty()) {
 			email = "non renseigné";
 		}
 		String nom = request.getParameter("nom");
-		if (nom==null) {
+		if (nom.isEmpty()) {
 			nom = "non renseigné";
 		}
 		String prenom = request.getParameter("prenom");
-		if (prenom==null) {
+		if (prenom.isEmpty()) {
 			prenom = "non renseigné";
 		}
 		String age = request.getParameter("age");

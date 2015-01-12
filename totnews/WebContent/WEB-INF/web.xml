@@ -15,6 +15,7 @@
    <web-resource-name>Secured resources</web-resource-name>
    <url-pattern>/WEB-INF/restricted/*</url-pattern>
    <url-pattern>/LoginServlet</url-pattern>
+   <url-pattern>/Servlet*</url-pattern>
    <http-method>GET</http-method>
    <http-method>POST</http-method>
   </web-resource-collection>
@@ -55,8 +56,8 @@
 		</filter-mapping> -->
  <security-role>
   <role-name>admin</role-name>
-  </security-role>
-  <security-role>
+ </security-role>
+ <security-role>
   <role-name>user</role-name>
  </security-role>
 </web-app>

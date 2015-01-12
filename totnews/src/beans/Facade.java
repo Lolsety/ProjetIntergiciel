@@ -1,14 +1,17 @@
 package beans;
 
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import sun.util.calendar.BaseCalendar.Date;
 import exception.CompteDejaCree;
 import beans.comptes.Compte;
 import beans.droits.Droit;
+import beans.texte.Article;
 
 @Singleton
 public class Facade {
@@ -54,5 +57,11 @@ public class Facade {
 	
 	public void modifierDroit(String pseudoLDAP, Droit droit) {
 		getCompteUtilisateur(pseudoLDAP).setDroit(droit);
+	}
+	
+	public void ajouterArticle(String pseudoLDAP, String titre, String corps) {
+		Article article = new Article(getCompteUtilisateur(pseudoLDAP),12012015,titre);
+		em.persist(article);
+		article.setContenu(corps);
 	}
 }

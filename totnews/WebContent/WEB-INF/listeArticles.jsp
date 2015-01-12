@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="../STYLE/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-<link href="../STYLE/style.css" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/STYLE/bootstrap/dist/css/bootstrap.css }">
+<link href="${pageContext.request.contextPath}/STYLE/style.css" rel="stylesheet">
 <title>Liste des articles </title>
 </head>
 
@@ -20,7 +20,9 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="index.html">Déconnexion</a></li>
+          <% if (request.isRequestedSessionIdValid()) { %>
+            <li><a href="ServletComptes?op=Deconnexion">Déconnexion</a></li>
+            <% } %>
           </ul>
         </div>
       </div>
@@ -33,8 +35,13 @@
         <nav class="col-sm-2">   
           <ul class="nav nav-pills nav-stacked">
             <li class="menu"> Menu :  </li>
-            <li> <a href="ServletComptes?op=RetourIndex"> <span class="glyphicon glyphicon-home"></span> Acceuil </a> </li>
-            <li> <a href="ServletComptes?op=Deconnexion"> <span class="glyphicon glyphicon-remove"></span> Déconnexion </a> </li>
+           
+            <% if (!request.isRequestedSessionIdValid()) { %>
+            	<li> <a href="LoginServlet"> <span class="glyphicon glyphicon-remove"></span> Connexion </a> </li>
+            	<li> <a href="./index.html"> <span class="glyphicon glyphicon-home"></span> Acceuil </a> </li>
+            <% } else { %>
+             <li> <a href="ServletComptes?op=RetourIndex"> <span class="glyphicon glyphicon-home"></span> Acceuil </a> </li>
+             <% } %>
           </ul> 
         </nav>
 		

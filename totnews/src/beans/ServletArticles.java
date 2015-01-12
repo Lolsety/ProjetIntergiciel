@@ -44,15 +44,18 @@ public class ServletArticles extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String op=request.getParameter("op");
-		Compte compte=facade.getCompteUtilisateur(request.getUserPrincipal().getName());
+		//Compte compte=facade.getCompteUtilisateur(request.getUserPrincipal().getName());
 		
 		if (op.equals ("listerArticles")) {
-			request.setAttribute("droit", compte.getDroit());
+			//request.setAttribute("droit", compte.getDroit());
 			request.getRequestDispatcher("/WEB-INF/listeArticles.jsp").forward(request,response);
 		} else if (op.equals ("redigerArticle")) {
 			request.getRequestDispatcher("/WEB-INF/restricted/redigerArticle.jsp").forward(request,response);
 		} else if (op.equals ("soumissionArticle")) {
-			request.getRequestDispatcher("/WEB-INF/restricted/index.jsp").forward(request,response);
+			String titre = request.getParameter("Titre");
+			String corps = request.getParameter("CorpsArticle");
+			facade.ajouterArticle(request.getUserPrincipal().getName(), titre, corps);
+			//request.getRequestDispatcher("/WEB-INF/restricted/index.jsp").forward(request,response);
 		} else if (op.equals ("lireArticle")) {
 			request.getRequestDispatcher("/WEB-INF/lireArticle.jsp").forward(request,response);
 		} else if (op.equals ("posterCommentaire")) {

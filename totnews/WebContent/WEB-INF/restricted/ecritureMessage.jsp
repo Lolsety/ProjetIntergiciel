@@ -7,8 +7,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="../../STYLE/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-<link href="../../STYLE/style.css" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/STYLE/bootstrap/dist/css/bootstrap.css }">
+<link href="${pageContext.request.contextPath}/STYLE/style.css" rel="stylesheet">
 <title>Ecriture d'un nouveau message </title>
 </head>
 
