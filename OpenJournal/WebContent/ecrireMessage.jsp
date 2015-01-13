@@ -9,10 +9,10 @@
 <body>
 
 
-<form method="get" action="ServletArticles">
+<form method="get" action="ServletMessagerie">
 	<input type="text" name="Destinaire" value="Destinaire"> </br>
 	<input type="text" name="Objet" value="Objet du  message"> </br>
-	<textarea name="CorpsArticle">
+	<textarea name="Contenu">
 	</textarea> </br>
 	<input type="submit" value="Envoyer le message">
 	<input type="hidden" name="op" value="envoiMessage">

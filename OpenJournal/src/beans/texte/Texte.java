@@ -1,10 +1,12 @@
 package beans.texte;
 
+import java.util.Date;
+
 import beans.comptes.Compte;
 
 public abstract class Texte {
 	Compte auteur;
-	int datePub;
+	Date datePub;
 	String text;
 	
 	public Compte getAuteur() {
@@ -13,10 +15,10 @@ public abstract class Texte {
 	public void setAuteur(Compte auteur) {
 		this.auteur = auteur;
 	}
-	public int getDatePub() {
+	public Date getDatePub() {
 		return datePub;
 	}
-	public void setDatePub(int datePub) {
+	public void setDatePub(Date datePub) {
 		this.datePub = datePub;
 	}
 	public String getText() {

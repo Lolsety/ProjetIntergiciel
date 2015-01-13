@@ -3,8 +3,10 @@ package beans.comptes;
 import java.util.Collection;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.UniqueConstraint;
 
 import beans.droits.Droit;
 import beans.texte.Article;
@@ -27,8 +29,13 @@ public class Compte {
 	private int age;
 	private Droit droit;
 	
-	@OneToMany
-	private Collection<MessagePrive> mps;
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "destinataire")
+	private Collection<MessagePrive> mpRecus;
+	
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "auteur")
+	private Collection<MessagePrive> mpEnvoyes;
 	
 	public Compte() {
 		this.droit=Droit.UTILISATEUR;
@@ -59,10 +66,6 @@ public class Compte {
 		this.email = email;
 	}
 
-	public void setMps(Collection<MessagePrive> mps) {
-		this.mps = mps;
-	}
-	
 	public String getPseudoSite() {
 		return pseudoSite;
 	}
@@ -98,11 +101,23 @@ public class Compte {
 	public void setDroit(Droit droit) {
 		this.droit = droit;
 	}
-	
-	public Collection<MessagePrive> getMps() {
-		return mps;
+
+	public Collection<MessagePrive> getMpRecus() {
+		return mpRecus;
 	}
 
+	public void setMpRecus(Collection<MessagePrive> mpRecus) {
+		this.mpRecus = mpRecus;
+	}
+
+	public Collection<MessagePrive> getMpEnvoyes() {
+		return mpEnvoyes;
+	}
+
+	public void setMpEnvoyes(Collection<MessagePrive> mpEnvoyes) {
+		this.mpEnvoyes = mpEnvoyes;
+	}
+	
 	
 	
 

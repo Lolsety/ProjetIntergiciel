@@ -1,6 +1,7 @@
 package beans;
 
 import java.util.Collection;
+import java.util.Date;
 
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
@@ -8,6 +9,7 @@ import javax.persistence.PersistenceContext;
 
 import beans.comptes.Compte;
 import beans.droits.Droit;
+import beans.texte.MessagePrive;
 
 @Singleton
 public class Facade {
@@ -41,5 +43,10 @@ public class Facade {
 	
 	public Collection<Compte> getComptes() {
 		return em.createQuery("from Compte", Compte.class).getResultList();
+	}
+	
+	public void ajouterMessage(Compte compte, String text, Compte compteDestinataire, String objet, Date datePub) {
+		MessagePrive mp = new MessagePrive(compte, text, compteDestinataire, objet, datePub);
+		em.persist(mp);
 	}
 }
