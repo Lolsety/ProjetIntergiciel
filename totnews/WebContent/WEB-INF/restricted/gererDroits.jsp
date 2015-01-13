@@ -5,30 +5,74 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../STYLE/bootstrap/dist/css/bootstrap.css">
+<link href="../../STYLE/style.css" rel="stylesheet">
 <title>Page de gestions des droits</title>
 </head>
 <body>
-<form method="get" action="ServletDroits">
-	Voici la liste des comptes utilisateurs : <br>
-	<%
-		for (Compte compte : (Collection<Compte>)request.getAttribute("listeComptes")) {
-			out.println(compte.getNom() + " " + compte.getPrenom() + " (" + compte.getPseudoLdap() + ") : ");
-			%>
-			<input name="Compte" value="<%= compte.getPseudoLdap()%>" type="radio"/> <br>
-			<%
-		}
-	%>
-	Quel droit associer à ce compte? : <br>
-	<%
-		for (Droit droit : Droit.values()) {
-			out.println(droit + " : ");
-			%>
-			<input name="Droit" value="<%= droit%>" type="radio"/> <br>
-			<%
-		}
-	%>
-	<input type = "submit" value="ok">
-	<input type="hidden" name="op" value="modifDroits">
-</form>
+
+  <!-- Barre de titre -->
+   <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand">
+			T.O.T News
+		  </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="LoginServlet">Déconnexion</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+	<div class="container">
+	
+	<%Droit droit=(Droit) request.getAttribute("droit"); %>
+	
+	  <!-- Menu -->
+      <div class="row">
+        <nav class="col-sm-2">   
+          <ul class="nav nav-pills nav-stacked">
+            <li class="menu"> Menu :  </li>
+				<li> <a href="ServletComptes?op=RetourIndex"> Retour à l'accueil </a> </li>
+				<li> <a href="ServletComptes?op=Deconnexion">Déconnexion </a> </li>			
+          </ul> 
+        </nav>
+		
+		<!-- Article -->
+        <section class="col-lg-10">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<center>
+					<form method="get" action="ServletDroits">
+						Voici la liste des comptes utilisateurs : <br>
+						<%
+						for (Compte compte : (Collection<Compte>)request.getAttribute("listeComptes")) {
+						out.println(compte.getNom() + " " + compte.getPrenom() + " (" + compte.getPseudoLdap() + ") : ");
+						%>
+						<input name="Compte" value="<%= compte.getPseudoLdap()%>" type="radio"/> <br>
+						<%
+						}
+						%>
+						Quel droit associer à ce compte? : <br>
+						<%
+						for (Droit droit : Droit.values()) {
+						out.println(droit + " : ");
+						%>
+						<input name="Droit" value="<%= droit%>" type="radio"/> <br>
+						<%
+						}
+						%>
+						</br>
+						<button class="btn  btn-primary" type="submit">OK</button>
+						<input type="hidden" name="op" value="modifDroits">
+						</form>	
+					</center>
+				</div>
+			</div>
+        </section>
+
 </body>
 </html>
