@@ -1,5 +1,7 @@
 package beans.texte;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +17,7 @@ public class Commentaire extends Texte {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	
-	public Commentaire(Compte compte, String text, int datePub){
+	public Commentaire(Compte compte, String text, Date datePub){
 		this.auteur = compte;
 		this.text = text;
 		this.datePub = datePub;

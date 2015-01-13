@@ -3,6 +3,7 @@ package beans.texte;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +25,7 @@ public class Article extends Texte {
 	
 	public Article() {}
 	
-	public Article(Compte compte, int datePub, String titre){
+	public Article(Compte compte, Date datePub, String titre){
 		this.auteur = compte;
 		this.datePub = datePub;
 		this.titre = titre;

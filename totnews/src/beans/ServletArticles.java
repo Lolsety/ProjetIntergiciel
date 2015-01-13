@@ -2,6 +2,7 @@ package beans;
 
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -54,7 +55,8 @@ public class ServletArticles extends HttpServlet {
 		} else if (op.equals ("soumissionArticle")) {
 			String titre = request.getParameter("Titre");
 			String corps = request.getParameter("CorpsArticle");
-			facade.ajouterArticle(request.getUserPrincipal().getName(), titre, corps);
+			Date date = new Date();
+			facade.ajouterArticle(request.getUserPrincipal().getName(), titre, corps, date);
 			//request.getRequestDispatcher("/WEB-INF/restricted/index.jsp").forward(request,response);
 		} else if (op.equals ("lireArticle")) {
 			request.getRequestDispatcher("/WEB-INF/lireArticle.jsp").forward(request,response);

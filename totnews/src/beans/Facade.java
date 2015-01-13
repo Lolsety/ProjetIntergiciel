@@ -1,13 +1,12 @@
 package beans;
 
-import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import sun.util.calendar.BaseCalendar.Date;
 import exception.CompteDejaCree;
 import beans.comptes.Compte;
 import beans.droits.Droit;
@@ -30,7 +29,7 @@ public class Facade {
 		if (getCompteUtilisateur(pseudoLDAP)!=null) {
 			throw new exception.CompteDejaCree();
 		}
-		// TODO : vérifier qu'un compte avec pseudoSite n'existe pas
+		// TODO : vÃ©rifier qu'un compte avec pseudoSite n'existe pas
 		Compte c = new Compte(pseudoLDAP, pseudoSite, email, nom, prenom, Integer.parseInt(age), droit);
 		em.persist(c);
 	}
@@ -59,8 +58,8 @@ public class Facade {
 		getCompteUtilisateur(pseudoLDAP).setDroit(droit);
 	}
 	
-	public void ajouterArticle(String pseudoLDAP, String titre, String corps) {
-		Article article = new Article(getCompteUtilisateur(pseudoLDAP),12012015,titre);
+	public void ajouterArticle(String pseudoLDAP, String titre, String corps, Date datepub) {
+		Article article = new Article(getCompteUtilisateur(pseudoLDAP),datepub,titre);
 		em.persist(article);
 		article.setContenu(corps);
 	}
