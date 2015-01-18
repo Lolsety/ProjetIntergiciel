@@ -22,15 +22,41 @@ public class Article extends Texte {
 	
 	private final String URL = "C:\\Users\\Tom\\Desktop\\ENSEEIHT\\Intergiciel\\db\\articles\\";
 	private String titre;
+	private  boolean publicationAutorise;
+
+	private Date dateModif;
 	
+	private Date datePub;
+	
+	public Date getDateModif() {
+		return dateModif;
+	}
+
 	public Article() {}
 	
 	public Article(Compte compte, Date datePub, String titre){
 		this.auteur = compte;
 		this.datePub = datePub;
 		this.titre = titre;
+		this.publicationAutorise = false;
+		this.dateModif = null;
 	}
 		
+	public boolean isPublicationAutorise() {
+		return publicationAutorise;
+	}
+
+	public void setPublicationAutorise(boolean publicationAutorise) {
+		this.publicationAutorise = publicationAutorise;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getTitre() {
 		return titre;
 	}
@@ -53,7 +79,7 @@ public class Article extends Texte {
 				 reader.close();
 			 }
 		 } catch (Exception e) {
-	            System.out.println("Impossible de lire le fichier");
+	            System.out.println("Impossible de lire le fichier : " + this.text);
 	      }
 		return article;
 	}
@@ -78,4 +104,22 @@ public class Article extends Texte {
 	   }
 		
 	}
+
+	public String getURL() {
+		return URL;
+	}
+
+	public void setDateModif(Date date) {
+		// TODO Auto-generated method stub
+		this.dateModif = date;
+	}
+
+	public Date getDatePub() {
+		return datePub;
+	}
+
+	public void setDatePub(Date datePub) {
+		this.datePub = datePub;
+	}
+	
 }

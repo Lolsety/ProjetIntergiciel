@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="beans.comptes.*, java.util.*,beans.droits.Droit"%>
+<%@ page import="beans.comptes.*, java.util.*,beans.droits.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="../../STYLE/bootstrap/dist/css/bootstrap.css">
-<link href="../../STYLE/style.css" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/STYLE/bootstrap/dist/css/bootstrap.css">
+<link href="${pageContext.request.contextPath}/STYLE/style.css" rel="stylesheet">
 <title>Page de gestions des droits</title>
 </head>
 <body>
@@ -58,8 +58,8 @@
 						%>
 						Quel droit associer à ce compte? : <br>
 						<%
-						for (Droit droit : Droit.values()) {
-						out.println(droit + " : ");
+						for (Droit d : Droit.values()) {
+						out.println(d + " : ");
 						%>
 						<input name="Droit" value="<%= droit%>" type="radio"/> <br>
 						<%

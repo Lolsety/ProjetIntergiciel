@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import beans.comptes.Compte;
 import beans.droits.Droit;
+import beans.texte.Article;
 
 /**
  * Servlet implementation class Servlet
@@ -45,10 +46,13 @@ public class ServletArticles extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String op=request.getParameter("op");
-		//Compte compte=facade.getCompteUtilisateur(request.getUserPrincipal().getName());
-		
+		if (request.getUserPrincipal()!=null) {
+			Compte utilisateur = facade.getCompteUtilisateur(request.getUserPrincipal().getName());
+		    request.setAttribute("droit", utilisateur.getDroit());
+		    request.setAttribute("pseudo", utilisateur.getPseudoSite());
+		}
 		if (op.equals ("listerArticles")) {
-			//request.setAttribute("droit", compte.getDroit());
+			request.setAttribute("listeArticles", facade.getArticles());
 			request.getRequestDispatcher("/WEB-INF/listeArticles.jsp").forward(request,response);
 		} else if (op.equals ("redigerArticle")) {
 			request.getRequestDispatcher("/WEB-INF/restricted/redigerArticle.jsp").forward(request,response);
@@ -57,15 +61,29 @@ public class ServletArticles extends HttpServlet {
 			String corps = request.getParameter("CorpsArticle");
 			Date date = new Date();
 			facade.ajouterArticle(request.getUserPrincipal().getName(), titre, corps, date);
-			//request.getRequestDispatcher("/WEB-INF/restricted/index.jsp").forward(request,response);
+			request.getRequestDispatcher("/WEB-INF/restricted/index.jsp").forward(request,response);
 		} else if (op.equals ("lireArticle")) {
+			Article a = facade.getArticle(request.getParameter("id"));
+			a.setText(a.getURL() + Integer.toString(a.getId()) + ".txt");
+			request.setAttribute("article", a);
 			request.getRequestDispatcher("/WEB-INF/lireArticle.jsp").forward(request,response);
 		} else if (op.equals ("posterCommentaire")) {
 			request.getRequestDispatcher("/WEB-INF/lireArticle.jsp").forward(request,response);
 		} else if (op.equals ("PublierArticle")) {
+			request.setAttribute("publier", facade.publierArticle(request.getParameter("id")));
 			request.getRequestDispatcher("/WEB-INF/restricted/publierArticle.jsp").forward(request,response);
 		} else if (op.equals ("CorrigerArticle")) {
+			Article a = facade.getArticle(request.getParameter("id"));
+			a.setText(a.getURL() + Integer.toString(a.getId()) + ".txt");
+			request.setAttribute("article", a);
 			request.getRequestDispatcher("/WEB-INF/restricted/corrigerArticle.jsp").forward(request,response);
+		} else if (op.equals ("CorrectionArticle")) {
+			String titre = request.getParameter("Titre");
+			String corps = request.getParameter("CorpsArticle");
+			Date date = new Date();
+			facade.modifierArticle(request.getParameter("id"), request.getUserPrincipal().getName(), titre, corps, date);
+			request.setAttribute("publier", "corrigé");
+			request.getRequestDispatcher("/WEB-INF/restricted/publierArticle.jsp").forward(request,response);
 		}
 	}
 

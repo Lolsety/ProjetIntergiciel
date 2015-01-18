@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="../../STYLE/bootstrap/dist/css/bootstrap.css">
-<link href="../../STYLE/style.css" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/STYLE/bootstrap/dist/css/bootstrap.css">
+<link href="${pageContext.request.contextPath}/STYLE/style.css" rel="stylesheet">
 <title>T.O.T; News </title>
 </head>
 
@@ -57,9 +57,9 @@
 			<div class="panel panel-default">
 				<div class="panel-body">
 					<center>
-					<h1>You have been successfully logged in as </h1>
-    				<h1><%= request.getUserPrincipal().getName() %> </h1>
-    				<h1> And you are an <%= droit %> </h1>	
+					<h1>Vous êtes bien connecté : </h1>
+    				<h1><%= request.getAttribute("pseudo") %> </h1>
+    				<h1> et vous êtes un <%= droit.toString() %> </h1>	
     				<br>
 					</center>
 				</div>

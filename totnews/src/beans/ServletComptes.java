@@ -51,9 +51,8 @@ public class ServletComptes extends HttpServlet {
 			response.sendRedirect("/journal/index.html");
 		} else {
 			if (op.equals("RetourIndex")) {
-				//c'est juste un test
-				facade.setDroitUtilisateur(Droit.ADMNINISTRATEUR, compte);
 				request.setAttribute("droit", compte.getDroit());
+				request.setAttribute("pseudo", compte.getPseudoSite());
 				request.getRequestDispatcher("/WEB-INF/restricted/index.jsp").forward(request,response);
 			} else if (op.equals("Deconnexion")) {
 				

@@ -57,7 +57,9 @@ public class LoginServlet extends HttpServlet {
 	    	if (request.isUserInRole("admin")) {
 	    		facade.modifierDroit(request.getUserPrincipal().getName(), Droit.ADMNINISTRATEUR);
 	    	}
-    	    request.setAttribute("droit", facade.getCompteUtilisateur(request.getUserPrincipal().getName()).getDroit());
+	    	Compte utilisateur = facade.getCompteUtilisateur(request.getUserPrincipal().getName());
+    	    request.setAttribute("droit", utilisateur.getDroit());
+    	    request.setAttribute("pseudo", utilisateur.getPseudoSite());
     	    request.getRequestDispatcher("/WEB-INF/restricted/index.jsp").forward(request, response);
     	} catch (Exception e) {
     		request.getSession().invalidate();

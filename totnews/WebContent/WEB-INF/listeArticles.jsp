@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="beans.droits.*"%>
+<%@ page import="beans.droits.*,beans.texte.Article,java.util.Collection"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/STYLE/bootstrap/dist/css/bootstrap.css }">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/STYLE/bootstrap/dist/css/bootstrap.css">
 <link href="${pageContext.request.contextPath}/STYLE/style.css" rel="stylesheet">
 <title>Liste des articles </title>
 </head>
@@ -20,7 +20,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-          <% if (request.isRequestedSessionIdValid()) { %>
+          <% if (request.getUserPrincipal()!=null) { %>
             <li><a href="ServletComptes?op=Deconnexion">Déconnexion</a></li>
             <% } %>
           </ul>
@@ -36,11 +36,11 @@
           <ul class="nav nav-pills nav-stacked">
             <li class="menu"> Menu :  </li>
            
-            <% if (!request.isRequestedSessionIdValid()) { %>
+            <% if (request.getUserPrincipal()==null) { %>
             	<li> <a href="LoginServlet"> <span class="glyphicon glyphicon-remove"></span> Connexion </a> </li>
             	<li> <a href="./index.html"> <span class="glyphicon glyphicon-home"></span> Acceuil </a> </li>
             <% } else { %>
-             <li> <a href="ServletComptes?op=RetourIndex"> <span class="glyphicon glyphicon-home"></span> Acceuil </a> </li>
+             <li> <a href="ServletComptes?op=RetourIndex"> <span class="glyphicon glyphicon-home"></span> Accueil </a> </li>
              <% } %>
           </ul> 
         </nav>
@@ -52,25 +52,25 @@
 				</div>
 				<div class="panel-body">
 					<div class="container">
-						Un article de fou <dd>     
-						<a href="#"> <span class="glyphicon glyphicon-book"></span> Lire </a>
-						<a href="#"> <span class="glyphicon glyphicon-pencil"></span> Corriger </a>
-						<a href="#"> <span class="glyphicon glyphicon-globe"></span> Publier</a>
-						</br>
-						Un autre article <dd>     
-						<a href="#"> <span class="glyphicon glyphicon-book"></span> Lire </a>
-						<a href="#"> <span class="glyphicon glyphicon-pencil"></span> Corriger </a>
-						<a href="#"> <span class="glyphicon glyphicon-globe"></span> Publier</a>
-						</br>
-						Et un troisième <dd>     
-						<a href="#"> <span class="glyphicon glyphicon-book"></span> Lire </a>
-						<a href="#"> <span class="glyphicon glyphicon-pencil"></span> Corriger </a>
-						<a href="#"> <span class="glyphicon glyphicon-globe"></span> Publier</a>
-						</br>
-						On est envahi !!! <dd>     
-						<a href="#"> <span class="glyphicon glyphicon-book"></span> Lire </a>
-						<a href="#"> <span class="glyphicon glyphicon-pencil"></span> Corriger </a>
-						<a href="#"> <span class="glyphicon glyphicon-globe"></span> Publier</a>
+					<% Collection<Article> listeArticles = (Collection<Article>)request.getAttribute("listeArticles"); %>
+					<% for (Article a : listeArticles) { %>
+						<%= a.getTitre() %> <dd>     
+						<li><a href="ServletArticles?op=lireArticle&id=<%=a.getId()%>"> <span class="glyphicon glyphicon-book"></span> Lire </a>
+						
+						<% if (request.getUserPrincipal()!=null) { 
+								if (((Droit)request.getAttribute("droit")).compareTo(Droit.CORRECTEUR)<0) { %>
+						<a href="ServletArticles?op=CorrigerArticle&id=<%=a.getId()%>"> <span class="glyphicon glyphicon-book"></span> Corriger </a>
+						
+								<% if (((Droit)request.getAttribute("droit")).compareTo(Droit.MODERATEUR)<0 & !a.isPublicationAutorise()) { %>
+						<a href="ServletArticles?op=PublierArticle&id=<%=a.getId()%>"> <span class="glyphicon glyphicon-book"></span> Publier </a>
+						<%} else { %>
+						<a href="ServletArticles?op=PublierArticle&id=<%=a.getId()%>"> <span class="glyphicon glyphicon-book"></span> Retirer </a>
+							<% }
+								} 
+								 }%>
+						</li>
+						
+					<% } %>
 					</div> 
 				</div>
 			</div>

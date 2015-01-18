@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import exception.CompteDejaCree;
+import exception.PseudoDejaUtilise;
 import beans.droits.Droit;
 
 /**
@@ -58,12 +59,18 @@ public class InscriptionServlet extends HttpServlet {
 		}
 		String age = request.getParameter("age");
 		Droit droit = Droit.UTILISATEUR;
-		try {
+		try {			
 			facade.ajouterCompte(pseudoLDAP,pseudoSite,email,nom,prenom,age,droit);
+			response.sendRedirect("/journal/index.html");
 		} catch (CompteDejaCree e) {
 			// TODO
+			request.setAttribute("pseudoLDAPErreur", "Ce login ldap est déjà affilié à un compte.");
+			request.getRequestDispatcher("/WEB-INF/inscription.jsp").forward(request, response);
+		} catch (PseudoDejaUtilise e) {
+			// TODO Auto-generated catch block
+			request.setAttribute("pseudoSiteErreur", "Ce pseudonyme est déjà utilisé.");
+			request.getRequestDispatcher("/WEB-INF/inscription.jsp").forward(request, response);
 		}
-		response.sendRedirect("/journal/index.html");
 	}
 
 }
