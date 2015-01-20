@@ -75,7 +75,7 @@
 					
 					<!-- Ecrire un commentaire -->
 					<form method="get" action="ServletArticles">
-						<textarea name="commentaire">
+						<textarea name="Commentaire">
 						</textarea> </br>
 							<button class="btn btn-primary" type="submit" value="Poster le commentaire">Poster le commentaire</button></br>
 							<input type="hidden" name="op" value="posterCommentaire">

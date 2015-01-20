@@ -33,7 +33,7 @@ public class Facade {
 		} else if (!em.createQuery("from Compte where pseudoSITE = \'" + pseudoSite + "\'",Compte.class).getResultList().isEmpty()){
 			throw new exception.PseudoDejaUtilise();
 		}
-		// TODO : vérifier qu'un compte avec pseudoSite n'existe pas
+		// TODO : vï¿½rifier qu'un compte avec pseudoSite n'existe pas
 		Compte c = new Compte(pseudoLDAP, pseudoSite, email, nom, prenom, Integer.parseInt(age), droit);
 		em.persist(c);
 	}
@@ -81,6 +81,11 @@ public class Facade {
 		article.setContenu(corps);
 	}
 	
+	public void ajouterCommentaire(String pseudoLDAP, Article article, String texte, Date date) {
+		Commentaire commentaire = new Commentaire(getCompteUtilisateur(pseudoLDAP), article, texte, date);
+		em.persist(commentaire);
+	}
+	
 	public Article getArticle(String id) {
 		if (id==null) {
 			return null;
@@ -114,7 +119,7 @@ public class Facade {
 			String corps, Date date) {
 		Article a = this.getArticle(id);
 		if (a==null) {
-			System.out.println("Article non trouvé : " + id);
+			System.out.println("Article non trouvï¿½ : " + id);
 		} else {
 			a.setTitre(titre);
 			a.setContenu(corps);

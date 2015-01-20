@@ -20,8 +20,11 @@ public class Compte {
 	String pseudoLdap;
 	
 
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "auteur")
 	Collection<Article> articles;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "auteur")
+	Collection<Commentaire> commentaires;
 	
 	private String pseudoSite;
 	private String email;

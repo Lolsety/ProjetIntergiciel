@@ -65,9 +65,14 @@ public class ServletArticles extends HttpServlet {
 		} else if (op.equals ("lireArticle")) {
 			Article a = facade.getArticle(request.getParameter("id"));
 			a.setText(a.getURL() + Integer.toString(a.getId()) + ".txt");
+			request.setAttribute("id", id);
 			request.setAttribute("article", a);
 			request.getRequestDispatcher("/WEB-INF/lireArticle.jsp").forward(request,response);
 		} else if (op.equals ("posterCommentaire")) {
+			Article a = facade.getArticle(request.getParameter("id"));
+			String texte = request.getParameter("Commentaire");
+			Date date = new Date();
+			faÃ§ade.ajouterCommentaire(request.getUserPrincipal().getName(), article, texte, date);
 			request.getRequestDispatcher("/WEB-INF/lireArticle.jsp").forward(request,response);
 		} else if (op.equals ("PublierArticle")) {
 			request.setAttribute("publier", facade.publierArticle(request.getParameter("id")));
@@ -82,7 +87,7 @@ public class ServletArticles extends HttpServlet {
 			String corps = request.getParameter("CorpsArticle");
 			Date date = new Date();
 			facade.modifierArticle(request.getParameter("id"), request.getUserPrincipal().getName(), titre, corps, date);
-			request.setAttribute("publier", "corrigé");
+			request.setAttribute("publier", "corrigï¿½");
 			request.getRequestDispatcher("/WEB-INF/restricted/publierArticle.jsp").forward(request,response);
 		}
 	}

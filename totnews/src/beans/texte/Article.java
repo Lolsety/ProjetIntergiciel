@@ -14,11 +14,21 @@ import beans.comptes.Compte;
 
 //@Stateful
 @Entity
-public class Article extends Texte {
+public class Article {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+	
+	@OneToOne
+	private Compte auteur;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "article")
+	Collection<Commentaire> commentaires;
+	
+	private Date datePub;
+	private String text;
+	
 	
 	private final String URL = "C:\\Users\\Tom\\Desktop\\ENSEEIHT\\Intergiciel\\db\\articles\\";
 	private String titre;
@@ -26,11 +36,6 @@ public class Article extends Texte {
 
 	private Date dateModif;
 	
-	private Date datePub;
-	
-	public Date getDateModif() {
-		return dateModif;
-	}
 
 	public Article() {}
 	
@@ -41,7 +46,30 @@ public class Article extends Texte {
 		this.publicationAutorise = false;
 		this.dateModif = null;
 	}
-		
+
+	public Compte getAuteur() {
+		return auteur;
+	}
+	public void setAuteur(Compte auteur) {
+		this.auteur = auteur;
+	}
+	public Date getDatePub() {
+		return datePub;
+	}
+	public void setDatePub(Date datePub) {
+		this.datePub = datePub;
+	}
+	public String getText() {
+		return text;
+	}
+	public void setText(String text) {
+		this.text = text;
+	}
+	
+	public Date getDateModif() {
+		return dateModif;
+	}
+	
 	public boolean isPublicationAutorise() {
 		return publicationAutorise;
 	}
